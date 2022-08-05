@@ -1,0 +1,20 @@
+#Sme.cna
+#Author: derian 
+$Switch = "on"; #开关
+
+
+
+on beacon_initial { # 在Beacon 初始化时执行，也就是上线时执行
+
+    if ($Switch eq "on"){ #判断开关是否为on
+        action("\c9Sending SME......"); # 调试信息发送到CS的公屏上，代表邮件正在发送
+        $IP = beacon_info($1, "external"); #取上线主机IP
+        $User = beacon_info($1, "user"); #取上线主机用户名
+        $ComName = beacon_info($1, "computer"); #取上线主机计算机名
+        $Arch = beacon_info($1, "arch"); #取上线主机架构
+        @Curl_command = @('python3', '/tmp/sme.py'  ,$IP,$User,$ComName,$Arch); #定义执行邮件发送脚本命令, sme.py一定要写服务器的绝对路径,并且要有执行权限
+        exec(@Curl_command); #执行邮件发送命令
+        println(@Curl_command);
+        action("\c9Send SME Done: ".$ComName."!");
+    }
+}
