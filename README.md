@@ -31,7 +31,7 @@ pldcxxxxdcge
 
 3.把 sme.py 移动到/tmp/目录下 ( 也可以在sme.cna中设置其他路径 ) , 并设置可以执行的属性
 
-![image-20220805154825077](.\assets\image-20220805154825077.png)
+![image-20220805154825077](./assets/image-20220805154825077.png)
 
 4.运行cs服务端 , 使用服务端加载sme.cna插件
 
